@@ -59,7 +59,7 @@ class MyClient(discord.Client):
                         try:
                             result = await channel.fetch_message(id)
                             return result
-                        except (AttributeError, discord.errors.NotFound):
+                        except (AttributeError, discord.errors.NotFound, discord.errors.Forbidden):
                             pass
         return None
     
