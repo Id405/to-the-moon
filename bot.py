@@ -4,6 +4,7 @@ import json
 import discord
 import os
 import asyncio
+import datetime
 
 class ConfigurationError(Exception):
     '''Raised whenever there is an error in the users configuration'''
@@ -43,6 +44,7 @@ class MyClient(discord.Client):
         data = requests.get('http://api.coincap.io/v2/assets').json()
         embed = discord.Embed(title='Crypto Status')
         embed.set_thumbnail(url='https://freedesignfile.com/upload/2017/08/rocket-icon-vector.png')
+        embed.set_footer(text=f"from {datetime.datetime.now().strftime('%m/%d/%y, %I:%M %p')}")
 
         for crypto in data['data']:
             if(crypto['symbol'] in config['config']['symbols']):
